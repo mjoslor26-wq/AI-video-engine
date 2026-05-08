@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curiosity Trap - Video Generator</title>
+    <title>Curiosity Trap – Video Generator</title>
     <style>
         :root {
             --bg: #0d0d0d;
@@ -19,13 +19,7 @@
             --radius: 12px;
             --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: var(--bg);
             color: var(--text);
@@ -40,7 +34,6 @@
                 radial-gradient(ellipse at 50% 50%, rgba(100, 100, 255, 0.02) 0%, transparent 70%);
             background-attachment: fixed;
         }
-
         .container {
             width: 100%;
             max-width: 720px;
@@ -49,7 +42,6 @@
             flex-direction: column;
             gap: 20px;
         }
-
         .header {
             text-align: center;
             margin-bottom: 8px;
@@ -80,7 +72,6 @@
             text-transform: uppercase;
             margin-top: 4px;
         }
-
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
@@ -90,7 +81,6 @@
             transition: var(--transition);
         }
         .card:hover { border-color: #3a3a3a; }
-
         .card h2 {
             font-size: 16px;
             font-weight: 700;
@@ -113,7 +103,6 @@
             0%, 100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.6); }
             50% { box-shadow: 0 0 0 12px rgba(0, 255, 136, 0); }
         }
-
         .input-group {
             display: flex;
             gap: 10px;
@@ -136,8 +125,6 @@
             border-color: var(--accent);
             box-shadow: 0 0 0 3px rgba(0, 255, 136, 0.1);
         }
-        .input-group input::placeholder { color: #555; }
-
         .btn {
             padding: 14px 28px;
             border: none;
@@ -174,12 +161,11 @@
             border: 1px solid var(--border);
             color: var(--text);
         }
-        .btn-outline:hover {
-            border-color: #555;
-            background: var(--surface2);
+        .btn-outline:hover { border-color: #555; background: #2a2a2a; }
+        .progress-section {
+            display: none;
+            margin-top: 8px;
         }
-
-        .progress-section { display: none; margin-top: 8px; }
         .progress-section.active { display: block; }
         .progress-bar-outer {
             width: 100%;
@@ -208,16 +194,11 @@
         }
         .progress-steps span { opacity: 0.4; transition: var(--transition); }
         .progress-steps span.done { opacity: 1; color: var(--accent); }
-        .progress-steps span.current {
-            opacity: 1;
-            color: #fff;
-            animation: pulse-text 1s ease-in-out infinite;
-        }
+        .progress-steps span.current { opacity: 1; color: #fff; animation: pulse-text 1s ease-in-out infinite; }
         @keyframes pulse-text {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.5; }
         }
-
         .log-box {
             margin-top: 16px;
             background: #0a0a0a;
@@ -238,19 +219,9 @@
             padding-left: 10px;
             margin-bottom: 4px;
         }
-        .log-box .log-entry.success {
-            border-left-color: var(--accent);
-            color: #ccc;
-        }
-        .log-box .log-entry.error {
-            border-left-color: var(--accent2);
-            color: #ff8888;
-        }
-        .log-box .log-entry.info {
-            border-left-color: #00ccff;
-            color: #88ccff;
-        }
-
+        .log-box .log-entry.success { border-left-color: var(--accent); color: #ccc; }
+        .log-box .log-entry.error { border-left-color: var(--accent2); color: #ff8888; }
+        .log-box .log-entry.info { border-left-color: #00ccff; color: #88ccff; }
         .output-section { display: none; margin-top: 8px; }
         .output-section.active { display: block; }
         .output-section video {
@@ -267,7 +238,6 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-
         .preset-grid {
             display: flex;
             flex-wrap: wrap;
@@ -285,17 +255,8 @@
             transition: var(--transition);
             user-select: none;
         }
-        .preset-chip:hover {
-            border-color: #555;
-            color: #fff;
-            background: #2a2a2a;
-        }
-        .preset-chip.selected {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(0, 255, 136, 0.08);
-        }
-
+        .preset-chip:hover { border-color: #555; color: #fff; background: #2a2a2a; }
+        .preset-chip.selected { border-color: var(--accent); color: var(--accent); background: rgba(0, 255, 136, 0.08); }
         .api-key-section {
             display: flex;
             gap: 8px;
@@ -325,7 +286,6 @@
             letter-spacing: 1px;
             white-space: nowrap;
         }
-
         .status-dot {
             display: inline-block;
             width: 10px;
@@ -334,13 +294,9 @@
             margin-right: 6px;
         }
         .status-dot.idle { background: #555; }
-        .status-dot.running {
-            background: #00ccff;
-            animation: pulse-dot 1s ease-in-out infinite;
-        }
+        .status-dot.running { background: #00ccff; animation: pulse-dot 1s ease-in-out infinite; }
         .status-dot.done { background: var(--accent); }
         .status-dot.error { background: var(--accent2); }
-
         @media (max-width: 600px) {
             .container { padding: 12px; gap: 14px; }
             .card { padding: 16px; }
@@ -364,10 +320,10 @@
             <h2><span class="dot"></span> Choose a Theme</h2>
             <div class="input-group">
                 <input
-                type="text"
-                id="themeInput"
-                placeholder="e.g., The Collapse of the Bronze Age, Deep Sea Biology, The Rise of AI..."
-                autocomplete="off"
+                    type="text"
+                    id="themeInput"
+                    placeholder="e.g., The Collapse of the Bronze Age, Deep Sea Biology, The Rise of AI..."
+                    autocomplete="off"
                 >
                 <button class="btn btn-primary" id="generateBtn" onclick="startGeneration()">
                     ⚡ Generate Video
@@ -423,12 +379,16 @@
     </div>
 
     <script>
+        // ==================== CONFIGURATION ====================
+        // 🔁 CHANGE THIS to your Render backend URL!
+        const BACKEND_URL = 'https://curiosity-trap-backend.onrender.com';
+        // =====================================================
+
         // ==================== STATE ====================
         const state = {
             isGenerating: false,
             currentTheme: '',
             videoUrl: null,
-            ws: null,
             apiKeys: {
                 gemini: '',
                 pexels: ''
@@ -479,7 +439,7 @@
             });
         }
 
-        // ==================== LOGGING ====================
+        // ==================== LOGGING & UI ====================
         function addLog(type, message) {
             const logBox = document.getElementById('logBox');
             logBox.classList.add('active');
@@ -513,7 +473,7 @@
             dot.className = 'status-dot ' + state_type;
         }
 
-        // ==================== GENERATION ====================
+        // ==================== GENERATION LOGIC ====================
         async function startGeneration() {
             if (state.isGenerating) return;
 
@@ -526,8 +486,7 @@
             const geminiKey = document.getElementById('geminiKey').value.trim();
             const pexelsKey = document.getElementById('pexelsKey').value.trim();
             if (!geminiKey || !pexelsKey) {
-                alert(
-                    'Please provide both Gemini API Key and Pexels API Key.\n\n🔑 Gemini: Get from https://aistudio.google.com/apikey\n📸 Pexels: Get from https://www.pexels.com/api/');
+                alert('Please provide both Gemini API Key and Pexels API Key.\n\n🔑 Gemini: Get from https://aistudio.google.com/apikey\n📸 Pexels: Get from https://www.pexels.com/api/');
                 return;
             }
             state.apiKeys.gemini = geminiKey;
@@ -540,6 +499,7 @@
             btn.disabled = true;
             btn.textContent = '⏳ Generating...';
 
+            // Reset UI
             document.getElementById('progressSection').classList.add('active');
             document.getElementById('outputSection').classList.remove('active');
             document.getElementById('logBox').innerHTML = '';
@@ -552,6 +512,7 @@
             addLog('info', '📡 Connecting to backend...');
 
             try {
+                // Step 1: Generate Script
                 addLog('info', '📝 Generating script with Gemini AI...');
                 updateProgress('script', 10);
                 const scriptData = await generateScript(theme, geminiKey);
@@ -559,30 +520,36 @@
                 addLog('info', `📜 Chapters: ${scriptData.chapters.length} | ~${scriptData.fullText.split(' ').length} words`);
                 updateProgress('script', 25);
 
-                addLog('info', '🔊 Generating realistic TTS audio...');
+                // Step 2: Generate TTS (polling version)
+                addLog('info', '🔊 Starting realistic TTS generation (background task)...');
                 updateProgress('tts', 30);
-                const audioBlob = await generateTTS(scriptData.fullText);
+                const audioBlob = await generateTTSWithPolling(scriptData.fullText);
+                const audioUrl = URL.createObjectURL(audioBlob);
                 addLog('success', '✅ TTS audio generated');
                 updateProgress('tts', 50);
 
+                // Step 3: Fetch images
                 addLog('info', '🖼️ Fetching images from Pexels...');
                 updateProgress('images', 55);
                 const imageUrls = await fetchImages(scriptData, pexelsKey);
                 addLog('success', `✅ Fetched ${imageUrls.length} images`);
                 updateProgress('images', 70);
 
-                addLog('info', '🎬 Composing video with Ken Burns, parallax, vignetting...');
+                // Step 4: Compose video
+                addLog('info', '🎬 Composing video with Ken Burns, vignette...');
                 updateProgress('compose', 75);
                 const videoBlob = await composeVideo(scriptData, audioBlob, imageUrls);
                 addLog('success', '✅ Video composition complete');
                 updateProgress('compose', 85);
 
+                // Step 5: Add subtitles
                 addLog('info', '💬 Burning word-by-word subtitles...');
                 updateProgress('subtitles', 90);
                 const finalVideo = await addSubtitles(videoBlob, scriptData);
                 addLog('success', '✅ Subtitles added');
                 updateProgress('subtitles', 95);
 
+                // Step 6: Finalize
                 updateProgress('final', 98);
                 state.videoUrl = URL.createObjectURL(finalVideo);
                 document.getElementById('outputVideo').src = state.videoUrl;
@@ -605,34 +572,35 @@
             }
         }
 
-        // ==================== API CALLS TO BACKEND ====================
-        const BACKEND_URL = 'https://curiosity-trap-backend.onrender.com';
-
-        async function generateScript(theme, geminiKey) {
-            const response = await fetch(`${BACKEND_URL}/api/generate-script`, {
+        // ==================== API CALLS ====================
+        async function generateScript(theme, apiKey) {
+            const resp = await fetch(`${BACKEND_URL}/api/generate-script`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ theme, apiKey: geminiKey }),
+                body: JSON.stringify({ theme, apiKey }),
             });
-            if (!response.ok) {
-                const err = await response.json().catch(() => ({}));
-                throw new Error(err.detail || `Script generation failed (${response.status})`);
+            if (!resp.ok) {
+                const err = await resp.json().catch(() => ({}));
+                throw new Error(err.detail || `Script generation failed (${resp.status})`);
             }
-            return await response.json();
+            return await resp.json();
         }
 
-        // ---- NEW generateTTS function with polling ----
-        async function generateTTS(text) {
-            // 1. Start TTS generation
+        // Polling TTS – replaces the old generateTTS
+        async function generateTTSWithPolling(text) {
+            // 1. Start background TTS
             const startResp = await fetch(`${BACKEND_URL}/api/generate-tts`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ text }),
             });
-            if (!startResp.ok) throw new Error('Failed to start TTS');
+            if (!startResp.ok) {
+                const err = await startResp.json().catch(() => ({}));
+                throw new Error(err.detail || 'Failed to start TTS');
+            }
             const { task_id } = await startResp.json();
 
-            // 2. Poll until ready
+            // 2. Poll until completed
             let status = 'processing';
             while (status === 'processing') {
                 await new Promise(r => setTimeout(r, 1000));  // wait 1 sec
@@ -640,9 +608,8 @@
                 if (!statusResp.ok) throw new Error('TTS status check failed');
                 const data = await statusResp.json();
                 status = data.status;
+                if (status === 'error') throw new Error('TTS generation error');
             }
-
-            if (status === 'error') throw new Error('TTS generation error');
 
             // 3. Download the audio file
             const downloadResp = await fetch(`${BACKEND_URL}/api/tts-download/${task_id}`);
@@ -650,15 +617,18 @@
             return await downloadResp.blob();
         }
 
-        async function fetchImages(scriptData, pexelsKey) {
+        async function fetchImages(scriptData, apiKey) {
             const keywords = extractKeywords(scriptData);
-            const response = await fetch(`${BACKEND_URL}/api/fetch-images`, {
+            const resp = await fetch(`${BACKEND_URL}/api/fetch-images`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ keywords, count: 15, apiKey: pexelsKey }),
+                body: JSON.stringify({ keywords, count: 15, apiKey }),
             });
-            if (!response.ok) throw new Error(`Image fetch failed (${response.status})`);
-            const data = await response.json();
+            if (!resp.ok) {
+                const err = await resp.json().catch(() => ({}));
+                throw new Error(err.detail || 'Image fetch failed');
+            }
+            const data = await resp.json();
             return data.urls || [];
         }
 
@@ -667,14 +637,16 @@
             formData.append('script', JSON.stringify(scriptData));
             formData.append('audio', audioBlob, 'audio.mp3');
             formData.append('imageUrls', JSON.stringify(imageUrls));
-            formData.append('duration', '480');
 
-            const response = await fetch(`${BACKEND_URL}/api/compose-video`, {
+            const resp = await fetch(`${BACKEND_URL}/api/compose-video`, {
                 method: 'POST',
                 body: formData,
             });
-            if (!response.ok) throw new Error(`Video composition failed (${response.status})`);
-            return await response.blob();
+            if (!resp.ok) {
+                const err = await resp.json().catch(() => ({}));
+                throw new Error(err.detail || `Video composition failed (${resp.status})`);
+            }
+            return await resp.blob();
         }
 
         async function addSubtitles(videoBlob, scriptData) {
@@ -682,12 +654,15 @@
             formData.append('video', videoBlob, 'video.mp4');
             formData.append('script', JSON.stringify(scriptData));
 
-            const response = await fetch(`${BACKEND_URL}/api/add-subtitles`, {
+            const resp = await fetch(`${BACKEND_URL}/api/add-subtitles`, {
                 method: 'POST',
                 body: formData,
             });
-            if (!response.ok) throw new Error(`Subtitle addition failed (${response.status})`);
-            return await response.blob();
+            if (!resp.ok) {
+                const err = await resp.json().catch(() => ({}));
+                throw new Error(err.detail || `Subtitle addition failed (${resp.status})`);
+            }
+            return await resp.blob();
         }
 
         function extractKeywords(scriptData) {
